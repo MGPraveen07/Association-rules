@@ -1,0 +1,13 @@
+library(arules)
+library(readr)
+my_movies <- read_csv("C:/Users/Admin/Desktop/Assignments/Association_rules/my_movies.csv")
+View(my_movies)
+str(my_movies)
+arules<- apriori(as.matrix(my_movies[,6:15]),parameter = list(support=0.09,confidence=0.7,minlen=2))
+arules
+inspect(head(sort(arules,by="lift")))
+head(quality(arules))
+library('arulesViz')
+plot(arules)
+plot(arules,method="grouped")
+windows()
